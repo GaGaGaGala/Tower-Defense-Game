@@ -34,12 +34,13 @@ class TowerDefenseGame:
 
         self.level = Level(self)
         self.grid = Grid(self)
-
+        self.show_grid = False #по умолчанию
         """Создание объекта шрифта"""
         self.font = pygame.font.SysFont("Arial", 24)
 
         """Загрузка звуков."""
         self.shoot_sound = pygame.mixer.Sound(self.settings.shoot_sound)
+
         self.selected_tower_type = 'basic'
         self.is_game_over = False
 
@@ -62,9 +63,8 @@ class TowerDefenseGame:
             elif event.type == pygame.KEYDOWN: #Нажатие клавиши на клавиатуре.
                 """При нажатии на Пробел отображается позиция для расположения башни."""
                 if event.key == pygame.K_SPACE:
-                    self.grid = Grid(self)
-
-                if event.key == pygame.K_1:
+                    self.show_grid = not self.show_grid
+                elif event.key == pygame.K_1:
                     self.selected_tower_type = 'basic'
                     print("Selected basic tower.")
                 elif event.key == pygame.K_2:                             #event.key - содержит код клавиши
@@ -107,7 +107,8 @@ class TowerDefenseGame:
         else:
             self.screen.blit(self.background, (0, 0))
             self.level.draw(self.screen)
-            self.grid.draw()
+            if self.show_grid: # При нажатии на пробел отображается сетка: show_grid = True
+                self.grid.draw()
 
             money_text = self.font.render(f"Money: ${self.settings.starting_money}", True, (255, 255, 255))
             tower_text = self.font.render(
