@@ -16,6 +16,8 @@ class Bullet(pygame.sprite.Sprite):
         self.speed = 5
         self.damage = damage
         self.velocity = self.calculate_velocity()
+        self.shoot_sound = pygame.mixer.Sound('assets/sounds/shoot.wav')
+        self.shoot_sound.play()
 
     def calculate_velocity(self):
         direction = (self.target - self.position).normalize()

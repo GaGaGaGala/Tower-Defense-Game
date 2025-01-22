@@ -17,6 +17,9 @@ class Enemy(pygame.sprite.Sprite):
         self.health = health
         self.position = Vector2(path[0])
         self.rect.center = self.position
+        self.enemy_hit_sound = pygame.mixer.Sound('assets/sounds/enemy_hit.wav')
+        self.enemy_hit_sound.play()
+
 
     def take_damage(self, amount):
         self.health -= amount

@@ -3,7 +3,8 @@ import sys
 from settings import Settings
 from level import Level
 from grid import Grid
-
+from bullet import Bullet
+from enemy import Enemy
 
 """
 Главный модуль проекта, содержащий основной игровой цикл,  обработку событий, обновление состояний игры и отрисовку 
@@ -20,6 +21,7 @@ class TowerDefenseGame:
          Конструктор, инициализирует основные параметры игры, загружает ресурсы и создаёт объекты уровня и сетки.
         """
         pygame.init()
+        pygame.mixer.init()
         self.settings = Settings()
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
 
@@ -40,6 +42,13 @@ class TowerDefenseGame:
 
         """Загрузка звуков."""
         self.shoot_sound = pygame.mixer.Sound(self.settings.shoot_sound)
+        self.upgrade_sound = pygame.mixer.Sound(self.settings.upgrade_sound)
+        self.upgrade_sound.play()
+        self.sell_sound = pygame.mixer.Sound(self.settings.sell_sound)
+        self.sell_sound.play()
+        self.enemy_hit_sound = pygame.mixer.Sound(self.settings.enemy_hit_sound)
+        pygame.mixer.music.load(self.settings.background_music)
+        pygame.mixer.music.play(-1)
 
         self.selected_tower_type = 'basic'
         self.is_game_over = False
@@ -82,6 +91,7 @@ class TowerDefenseGame:
         """Обновляет состояние игры, вызывая обновления уровня и сетки."""
         self.level.update()
         self.grid.update()
+        self.upgrade_sound = pygame.mixer.Sound(self.settings.upgrade_sound)
 
     def _draw_win_screen(self):
         """Отображает экран победы."""
