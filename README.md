@@ -68,8 +68,4 @@ class BasicTower(Tower) и class SniperTower(Tower): Конкретные реа
  
 Внесённые изменения:
 В main.py добавлено условие: сетка для установления башни появляется при нажатии на "Пробел" - переключатель положения:
-
-![Image alt](https://github.com/GaGaGaGala/Tower-Defense-Game/blob/master/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(452).png)
 показать сетку и не показать сетку.
-
-![Image alt](https://github.com/GaGaGaGala/Tower-Defense-Game/blob/master/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20(451).png)
